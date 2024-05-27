@@ -1,0 +1,16 @@
+body{
+    background-color: rgb(29, 28, 37);
+    color: white;
+}
+
+tr{
+    border: solid 1px white;
+}
+
+td{
+    border: solid 1px white;
+}
+
+.table{
+    margin: 0 10px;
+}
