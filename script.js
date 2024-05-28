@@ -2,6 +2,8 @@
 
 const main_flexbox_element = document.getElementById("main-flexbox")
 
+const vertical_box_1 = document.getElementById("vertical-box1")
+
 
 
 
@@ -83,11 +85,46 @@ function reverse_3n_sequence_step(value_to_step_from){
 
 
 
+function create_number_list(number_list){
+    const box_div = document.createElement("div")
+    box_div.className = "number-list"
+    for (let i = 0; i < number_list.length; i++) {
+        const number = number_list[i];
+        
+        const div_elements = document.createElement("div")
+        div_elements.className = "number-list-element"
+        const paragraph_elements = document.createElement("p")
+        paragraph_elements.textContent = String(number)
+        div_elements.appendChild(paragraph_elements)
+        box_div.appendChild(div_elements)
+    }
+    return box_div
+}
+
+
+
+
 let values_to_check = [1]
-for(let i=0; i<100; i++){
-    const reverse_step_values = reverse_3n_sequence_step(values_to_check[0])
-    console.log(reverse_step_values)
-    values_to_check.unshift()
-    values_to_check.push(reverse_step_values.reverse_even_step)
-    (reverse_step_values.reverse_odd_step !== undefined)? values_to_check.push(reverse_step_values.reverse_odd_step) : i += 0;//Yes this is necessary
+
+for(let i=0; i<25; i++){
+    
+    let values_to_check_next = []
+
+    console.log(values_to_check)
+    vertical_box_1.appendChild(create_number_list(values_to_check))
+    for (let j = 0; j < values_to_check.length; j++) {
+        const element = values_to_check[j];
+        
+        const reverse_step_values = reverse_3n_sequence_step(element)
+        const reverse_even_step = reverse_step_values.reverse_even_step
+        const reverse_odd_step = reverse_step_values.reverse_odd_step
+        
+        values_to_check_next.push(reverse_even_step)
+        
+        if(reverse_odd_step !== undefined && reverse_odd_step !== 1){
+            values_to_check_next.push(reverse_odd_step)
+        }
+
+    }
+    values_to_check = Array.from(values_to_check_next)
 }

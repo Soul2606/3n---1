@@ -14,3 +14,17 @@ td{
 .table{
     margin: 0 10px;
 }
+
+.vertical-box{
+
+}
+
+.number-list{
+    display: flex;
+}
+
+.number-list-element{
+    margin: auto;
+    background-color: rgb(55, 55, 93);
+    border-radius: 50%;
+}
