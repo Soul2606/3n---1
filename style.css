@@ -15,8 +15,14 @@ td{
     margin: 0 10px;
 }
 
-.vertical-box{
+.flexbox{
+    display: flex;
+    border:solid white 1px;
+    align-items: center;
+}
 
+.wide-number{
+    margin: 0 15px;
 }
 
 .number-list{

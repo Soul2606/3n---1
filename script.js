@@ -104,25 +104,54 @@ function create_number_list(number_list){
 
 
 
-let values_to_check = [1]
+function create_number_div(number){
+    const main_body = document.createElement("div")
+    main_body.className = "flexbox"
 
-for(let i=0; i<25; i++){
+    const number_paragraph = document.createElement("p")
+    number_paragraph.textContent = number
+    number_paragraph.className = "wide-number"
+    main_body.appendChild(number_paragraph)
+
+    const subset_div = document.createElement("div")
+    main_body.appendChild(subset_div)
+
+    return {main:main_body, subset:subset_div}
+}
+
+
+
+
+
+const number_div = create_number_div(1)
+vertical_box_1.appendChild(number_div.main)
+
+let values_to_check = [[1, number_div.subset]]
+
+for(let i=0; i<20; i++){
     
     let values_to_check_next = []
 
-    console.log(values_to_check)
-    vertical_box_1.appendChild(create_number_list(values_to_check))
+    console.log(Array.from(values_to_check))
     for (let j = 0; j < values_to_check.length; j++) {
-        const element = values_to_check[j];
+        const number = values_to_check[j][0]
+        const element = values_to_check[j][1]
         
-        const reverse_step_values = reverse_3n_sequence_step(element)
+        const reverse_step_values = reverse_3n_sequence_step(number)
         const reverse_even_step = reverse_step_values.reverse_even_step
         const reverse_odd_step = reverse_step_values.reverse_odd_step
         
-        values_to_check_next.push(reverse_even_step)
+        const even_number_element = create_number_div(reverse_even_step)
+        
+        element.appendChild(even_number_element.main)
+        
+        values_to_check_next.push([reverse_even_step, even_number_element.subset])
         
         if(reverse_odd_step !== undefined && reverse_odd_step !== 1){
-            values_to_check_next.push(reverse_odd_step)
+            const odd_number_element = create_number_div(reverse_odd_step)
+            element.appendChild(odd_number_element.main)
+
+            values_to_check_next.push([reverse_odd_step, odd_number_element.subset])
         }
 
     }
